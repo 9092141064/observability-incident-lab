@@ -1,0 +1,17 @@
+global:
+  resolve_timeout: 2m
+
+route:
+  group_by: ["alertname", "instance"]
+  group_wait: 10s
+  group_interval: 30s
+  repeat_interval: 5m
+  receiver: "local-mailpit"
+
+receivers:
+  - name: "local-mailpit"
+    email_configs:
+      - to: "hariragavender2001@gmail.com"
+        from: "alertmanager@local.lab"
+        smarthost: "mailpit:1025"
+        require_tls: false
